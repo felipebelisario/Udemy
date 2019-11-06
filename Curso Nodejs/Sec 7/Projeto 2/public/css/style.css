@@ -1,0 +1,14 @@
+body{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: radial-gradient(#D3D3D3 0.5%, #6A7179 99%);
+}
+
+.white-button{
+    border: 2px solid white;
+}
+
+.white-button:hover{
+    background-color: #333740;
+    color: white;
+}

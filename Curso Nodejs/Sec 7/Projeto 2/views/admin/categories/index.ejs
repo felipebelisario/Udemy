@@ -1,0 +1,63 @@
+<%- include ../../partials/header.ejs %>
+
+<body>
+    <%- include ../../partials/navbar.ejs %>
+
+    <div class="container">
+        <br>
+        <hr>
+        <h2 class="font-weight-bold text-center text-light 
+            bg-dark card-header rounded-pill">Categorias</h2>
+        <hr>
+        <br>
+        <table class="table table-dark table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Slug</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% categories.forEach(category => { %>
+                    <tr>
+                        <th scope="row"><%= category.id %></th>
+                        <td><%= category.title %></td>
+                        <td><%= category.slug %></td>
+                        <td>
+
+
+                            
+                            <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-light white-button">Editar</a>
+                            
+                            <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                                <input type="hidden" name="id" value="<%= category.id %>">
+                                <button style="margin-left: 2vh;" class="btn btn-light white-button">Deletar</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <br>
+        <a href="/admin/categories/new" class="btn btn-dark">Adicionar categoria</a>
+
+    </div>
+
+</body>
+
+<%- include ../../partials/footer.ejs %>
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar essa categoria?");
+        
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
