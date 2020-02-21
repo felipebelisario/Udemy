@@ -1,0 +1,35 @@
+<%- include ../../partials/header.ejs %>
+
+<body>
+    <%- include ../../partials/navbar.ejs %>
+
+    <div class="container">
+        <br><br>
+        <div class="card text-light bg-dark mb-3">
+            <div class="card-header">
+                <h2>Cadastro de usuário</h2>
+            </div>
+
+            <div class="card-body">
+                <form method="POST" action="/users/create">
+                    <label>Email</label>
+                    <input class="form-control" type="email" name="email"
+                        placeholder="email@exemplo.com">
+                    <br>
+
+                    <label>Senha</label>
+                    <input class="form-control" type="password" name="password"
+                        placeholder="">
+                    <br>
+
+                    <button type="submit" class="btn btn-light font-weight-bold white-button">
+                        Cadastrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<%- include ../../partials/footer.ejs %>

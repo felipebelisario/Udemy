@@ -1,0 +1,27 @@
+<%- include partials/header.ejs %>
+
+<body>
+    <%- include partials/homenavbar.ejs %>
+
+    <br>
+
+    <div class="container">
+  
+        <div class="card mb-3">
+            <div class="card-header text-light bg-dark">
+                <h2><%= article.title %></h2>
+                <br>
+                <p>Categoria: <%= article.category.title %></p>
+            </div>
+
+            <div class="card-body text-dark bg-light">
+                
+                <%- article.body %>
+                
+            </div>
+        </div>
+        
+    </div>  
+</body>
+
+<%- include partials/footer.ejs %>

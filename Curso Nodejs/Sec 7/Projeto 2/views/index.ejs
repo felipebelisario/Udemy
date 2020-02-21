@@ -1,7 +1,46 @@
 <%- include partials/header.ejs %>
 
 <body>
-    <%- include partials/navbar.ejs %>    
+    <%- include partials/homenavbar.ejs %>
+
+    <br>
+    <div class="jumbotron">
+        <h1 class="display-4">Bem vindo!</h1>
+        <p class="lead">Esse é um simples blog para publicação de artigos.</p>
+        <hr class="my-4">
+        <p>Sinta-se livre para cadastrar seus próprios artigos ou ler os de outros autores!</p>
+    </div>
+    
+    <div class="container">
+
+        
+
+        <% articles.forEach(article => { %>
+            <br>
+            <div class="card text-light bg-dark mb-3">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+
+                <div class="card-body">
+                    
+                    <a href="/<%= article.slug %>" class="btn btn-light font-weight-bold white-button">Ler artigo</a>
+                    
+                </div>
+            </div>
+        <% }) %>
+        
+        <br>
+
+        <div class="row">
+            <div class="col col-12">
+                <a class="btn btn-light font-weight-bold white-button" 
+                    style="float: right;" href="/articles/page/2">Próxima página ></a>
+            </div>
+        </div>
+        <br>
+
+    </div>  
 </body>
 
 <%- include partials/footer.ejs %>
