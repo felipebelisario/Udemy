@@ -1,4 +1,4 @@
-name: lojavirtual
+name: atividadecodetec
 description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
@@ -28,13 +28,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
-  flutter_staggered_grid_view: ^0.3.0
-  cloud_firestore: ^0.12.9
-  carousel_pro: ^1.0.0
-  transparent_image: ^1.0.0
-  scoped_model: ^1.0.1
-  firebase_auth: ^0.11.1+12
-  url_launcher: ^5.1.1
+  http: ^0.12.1
 
 dev_dependencies:
   flutter_test:
@@ -45,16 +39,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - "images/codetec_logo.jpg"
   fonts:
     - family: SweetPurple
       fonts:
-        - asset: fonts/sweet-purple.ttf
-  assets:
-    - images/blue-shirt.png
-    - images/blusa.png
-    - images/calca.png
-    - images/camisa.png
-    - images/colete.png
+        - asset: fonts/sweet_purple.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

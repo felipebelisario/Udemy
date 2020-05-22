@@ -1,0 +1,200 @@
+{
+  "equipes": [
+    {
+      "id": 1,
+      "nome": "Almoxarifado"
+    },
+    {
+      "id": 2,
+      "nome": "TI"
+    },
+    {
+      "id": 3,
+      "nome": "Cantina"
+    },
+    {
+      "id": 4,
+      "nome": "Vendas"
+    },
+    {
+      "id": 5,
+      "nome": "Marketing"
+    },
+    {
+      "id": 6,
+      "nome": "RH"
+    },
+    {
+      "nome": "Almoxarifado",
+      "id": 7
+    }
+  ],
+  "cargos": [
+    {
+      "id": 1,
+      "nome": "Vendedor"
+    },
+    {
+      "id": 2,
+      "nome": "Chef"
+    },
+    {
+      "id": 3,
+      "nome": "Massagista"
+    },
+    {
+      "id": 4,
+      "nome": "Desenvolvedor"
+    },
+    {
+      "nome": "Cargo 1",
+      "id": 5
+    }
+  ],
+  "membros": [
+    {
+      "id": 2,
+      "cargoId": 1,
+      "equipeId": 1,
+      "nome": "Mônica Elizabeth Geller",
+      "email": "monica@gmail.com",
+      "salario": 3000,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "id": 3,
+      "cargoId": 1,
+      "equipeId": 5,
+      "nome": "Phoebe Buffay",
+      "email": "phoebe@gmail.com",
+      "salario": 3000,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "id": 4,
+      "cargoId": 1,
+      "equipeId": 4,
+      "nome": "Ross Eustace Geller",
+      "email": "ross@gmail.com",
+      "salario": 3000,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "id": 5,
+      "cargoId": 1,
+      "equipeId": 3,
+      "nome": "Chandler Muriel Bing",
+      "email": "chandler@gmail.com",
+      "salario": 3000,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "id": 6,
+      "cargoId": 1,
+      "equipeId": 6,
+      "nome": "Joseph Francis Tribbiani",
+      "email": "joseph@gmail.com",
+      "salario": 3000,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "cargoId": 1,
+      "equipeId": 2,
+      "nome": "Rachel Karen Green",
+      "email": "rachel@gmail.com",
+      "salario": 1000,
+      "foto": "https://picsum.photos/seed/picsum/100/100",
+      "id": 7
+    },
+    {
+      "cargoId": 1,
+      "equipeId": 6,
+      "nome": "Daniel Joe Green",
+      "email": "daniel@gmail.com",
+      "salario": 10000,
+      "foto": "https://picsum.photos/seed/picsum/100/100",
+      "id": 8
+    },
+    {
+      "cargoId": 1,
+      "equipeId": 2,
+      "nome": "Rachel Karen Green",
+      "email": "rachel@gmail.com",
+      "salario": 1000,
+      "foto": "https://picsum.photos/seed/picsum/100/100",
+      "id": 9
+    },
+    {
+      "cargoId": 1,
+      "equipeId": 2,
+      "nome": "Rachel Karen Green",
+      "email": "rachel@gmail.com",
+      "salario": 1000,
+      "foto": "https://picsum.photos/seed/picsum/100/100",
+      "equipe": {
+        "id": 4,
+        "nome": "Vendas"
+      },
+      "id": 10
+    },
+    {
+      "cargoId": 1,
+      "equipeId": 2,
+      "nome": "Rachel Karen Green",
+      "email": "rachel@gmail.com",
+      "salario": 1000,
+      "foto": "https://picsum.photos/seed/picsum/100/100",
+      "equipe": {
+        "id": 7,
+        "nome": "Vendas"
+      },
+      "id": 11
+    },
+    {
+      "cargoId": 1,
+      "equipeId": 7,
+      "nome": "Rachel Karen Green",
+      "email": "rachel@gmail.com",
+      "salario": 1000,
+      "foto": "https://picsum.photos/seed/picsum/100/100",
+      "equipe": {
+        "id": 7,
+        "nome": "Vendas"
+      },
+      "id": 12
+    },
+    {
+      "id": 13,
+      "cargoId": 9868,
+      "equipeId": 9898,
+      "nome": "bchd",
+      "email": "hfhdh",
+      "salario": 5995,
+      "foto": "hfhd",
+      "cargo": null,
+      "equipe": null
+    },
+    {
+      "id": 14,
+      "cargoId": 1,
+      "equipeId": 1,
+      "nome": "teste",
+      "email": "meu teste",
+      "salario": 8968,
+      "foto": "hdhdhd",
+      "cargo": null,
+      "equipe": null
+    }
+  ],
+  "meusdados": {
+    "id": 6,
+    "cargoId": 1,
+    "equipeId": 6,
+    "nome": "Deus",
+    "endereco": "Rio das pedra 1661",
+    "email": "joseph@gmail.com",
+    "salario": 900,
+    "foto": "https://picsum.photos/seed/picsum/100/100",
+    "sessao": "15"
+  }
+}
