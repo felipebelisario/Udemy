@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromARGB(255, 0, 83, 171),
       ),
       home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

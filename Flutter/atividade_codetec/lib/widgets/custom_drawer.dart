@@ -6,16 +6,20 @@ class CustomDrawer extends StatelessWidget {
 
   final PageController pageController;
 
-  Widget _buildDrawerBack() => Container(
-    decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 52, 157, 234),
-          Color.fromARGB(255, 129, 181, 236)
-        ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-  );
-
   @override
   Widget build(BuildContext context) {
+
+    Widget _buildDrawerBack() => Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+
+            Color.fromARGB(255, 209, 230, 254),
+            Color.fromARGB(255, 127, 186, 255),
+            Theme.of(context).primaryColor,
+
+          ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+    );
+
     return Drawer(
       child: Stack(
         children: <Widget>[

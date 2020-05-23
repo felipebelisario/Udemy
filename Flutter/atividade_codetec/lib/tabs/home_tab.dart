@@ -3,7 +3,7 @@ import 'package:atividadecodetec/tiles/home_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-final String url = "http://localhost:3000/";
+final String url = "http://28cf302f.ngrok.io/";
 
 class HomeTab extends StatefulWidget {
   @override
@@ -11,6 +11,7 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+
   Future<List> _getData(String jsonPath) async {
     http.Response response;
     response = await http.get(url + jsonPath);
@@ -43,9 +44,15 @@ class _HomeTabState extends State<HomeTab> {
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         print(snapshot.data[0]["nome"]);
-                        return Material( child: HomeTile("grid",snapshot.data[index]), color: Colors.transparent);
+                        return Material( child: HomeTile("grid",snapshot.data[index], _getData), color: Colors.transparent);
                       }),
-                  Container()
+                  ListView.builder(
+                    padding: EdgeInsets.all(4.0),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index){
+                      return Material( child: HomeTile("list",snapshot.data[index], _getData), color: Colors.transparent);
+                    },
+                  )
                 ]);
         });
   }

@@ -1,56 +1,76 @@
+import 'package:atividadecodetec/screens/member_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeTile extends StatelessWidget {
-  HomeTile(this.type, this.team);
+  HomeTile(this.type, this.team, this._getData);
 
   final String type;
   final Map<String, dynamic> team;
+  final Future<List> Function(String) _getData;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("aaa");
-        //Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductScreen(product)));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => MemberScreen(team, _getData)));
       },
-      child: Card(
+      child: Padding(
+          padding: EdgeInsets.only(bottom: type == "grid" ? 0.0 : 8.0),
+          child: Card(
           child: type == "grid"
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+              ? Stack(
+            children: <Widget>[
+              Container(
+                child: Stack(
                   children: <Widget>[
-                    Container(
-                      color: Colors.blue,
-                      padding: EdgeInsets.only(top: 50.0),
-                        child: Text(
-                      team["nome"],
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 20.0),
-                    )),
-                    Expanded(child:
-                    Container(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Icon(Icons.arrow_drop_down),
-                          Text(
-                            "Id: ${team["id"]}",
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0,
-                                color: Colors.grey[500]),
-                          ),
-                        ],
+                    Align(
+                      child: Text(team["nome"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),),
+                      alignment: Alignment.center,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.0, right: 5.0),
+                      child: Align(
+                        child: Text("ID: ${team["id"]}", style: TextStyle(color: Colors.grey[500]),),
+                        alignment: Alignment.topRight,
                       ),
                     ),
-                    )
+                    Align(
+                      child: Icon(Icons.keyboard_arrow_down, color: Colors.grey[500],),
+                      alignment: Alignment.bottomCenter,
+                    ),
                   ],
-                )
-              : Container()),
+                ),
+              )
+            ],
+              )
+              : Stack(
+            children: <Widget>[
+              Container(
+                height: 55.0,
+                child: Stack(
+                  children: <Widget>[
+
+                    Align(
+                      child: Text(team["nome"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),),
+                      alignment: Alignment.center,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Align(
+                        child: Text("ID: ${team["id"]}", style: TextStyle(color: Colors.grey[500]),),
+                        alignment: Alignment.centerLeft,
+                      ),
+                    ),
+                    Align(
+                      child: Icon(Icons.keyboard_arrow_right, color: Colors.grey[500],),
+                      alignment: Alignment.centerRight,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ))
+      ),
     );
   }
 }

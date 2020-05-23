@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Equipe"),
+            title: Text("Equipes"),
             centerTitle: true,
             bottom: TabBar(
               indicatorColor: Colors.white,
