@@ -93,6 +93,7 @@ class _ContactPageState extends State<ContactPage> {
                           else {
                             setState(() {
                               _editedContact.img = file.path;
+                              print(file.runtimeType);
                             });
                           }
                         });

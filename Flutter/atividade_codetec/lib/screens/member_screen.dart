@@ -1,45 +1,39 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:atividadecodetec/helpers/database_helper.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart' as http;
+
+final String defaultImage =
+    "https://www.pinclipart.com/picdir/big/18-181421_png-transparent-download-person-svg-png-icon-person.png";
 
 class MemberScreen extends StatelessWidget {
-
+  final DatabaseHelper helper = DatabaseHelper();
   final Map<String, dynamic> team;
-  final Future<List> Function(String) _getData;
 
-  MemberScreen(this.team, this._getData);
-
-  Future<List> _getMembers() async{
-
-    List listFiltered = await _getData("membros");
-
-    listFiltered = listFiltered.where((member) =>
-      member["equipeId"] == team["id"]
-    ).toList();
-
-    listFiltered.sort((a, b) => a["cargoId"] > b["cargoId"] ? 1 : -1);
-    return listFiltered;
-  }
+  MemberScreen(this.team);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(team["nome"]),
+        title: Text("${team["nome"]}"),
         centerTitle: true,
       ),
       body: FutureBuilder(
-        future: _getMembers(),
-        builder: (context, snapshot){
-          if(!snapshot.hasData){
+        future: helper
+            .getData("membros?equipeId=${team["id"]}&_sort=cargoId&_order=asc"),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),
             );
           } else {
             return ListView.builder(
               itemCount: snapshot.data.length,
-              itemBuilder: (context, index){
+              itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
 //                    _showOptions(context, index);
@@ -50,34 +44,62 @@ class MemberScreen extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            width: 80.0,
-                            height: 80.0,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: snapshot.data[index]["foto"] != null
-                                        ? FileImage(File(snapshot.data[index]["foto"].toString()))
-                                        : AssetImage("images/person.png"),
-                                    fit: BoxFit.cover)),
-                          ),
+                              width: 80.0,
+                              height: 80.0,
+                              child: CachedNetworkImage(
+                                imageUrl: snapshot.data[index]["foto"] == null
+                                    ? defaultImage
+                                    : snapshot.data[index]["foto"],
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                        decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )),
+                                errorWidget: (context, url, error) {
+                                  return Image.network(defaultImage);
+                                },
+                              )),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(25.0, 10.0, 10.0, 10.0),
+                              padding:
+                                  EdgeInsets.fromLTRB(25.0, 10.0, 10.0, 10.0),
                               child: Container(
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width - 165.0,
+                                  width:
+                                      MediaQuery.of(context).size.width - 165.0,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(snapshot.data[index]["nome"] ?? "",
                                           style: TextStyle(
-                                              fontSize: 22.0, fontWeight: FontWeight.bold),
+                                              fontSize: 22.0,
+                                              fontWeight: FontWeight.bold),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1),
+                                      FutureBuilder(
+                                        future: helper.getData(
+                                            "cargos?id=${snapshot.data[index]["cargoId"]}"),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.hasData) {
+                                            return Text(
+                                                snapshot.data[0]["nome"],
+                                                style:
+                                                    TextStyle(fontSize: 18.0),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1);
+                                          } else {
+                                            return SpinKitWave(
+                                              size: 5.0,
+                                              color: Colors.grey[500],
+                                            );
+                                          }
+                                        },
+                                      ),
                                       Text(snapshot.data[index]["email"] ?? "",
-                                          style: TextStyle(
-                                              fontSize: 18.0),
+                                          style: TextStyle(fontSize: 18.0),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1),
                                     ],

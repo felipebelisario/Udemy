@@ -116,7 +116,7 @@
       "id": 8
     },
     {
-      "cargoId": 1,
+      "cargoId": 3,
       "equipeId": 2,
       "nome": "Rachel Karen Green",
       "email": "rachel@gmail.com",
@@ -138,7 +138,7 @@
       "id": 10
     },
     {
-      "cargoId": 1,
+      "cargoId": 2,
       "equipeId": 2,
       "nome": "Rachel Karen Green",
       "email": "rachel@gmail.com",

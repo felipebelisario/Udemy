@@ -1,4 +1,6 @@
+import 'package:atividadecodetec/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerTile extends StatelessWidget {
   DrawerTile(this.icon, this.text, this.controller, this.page);
@@ -7,15 +9,23 @@ class DrawerTile extends StatelessWidget {
   final String text;
   final PageController controller;
   final int page;
+  SharedPreferences prefs;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {
-          Navigator.of(context).pop();
-          controller.jumpToPage(page);
+        onTap: () async {
+          if(page == 3){
+            prefs = await SharedPreferences.getInstance();
+            prefs.clear();
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()));
+          } else {
+            Navigator.of(context).pop();
+            controller.jumpToPage(page);
+          }
         },
         child: Container(
           height: 60.0,

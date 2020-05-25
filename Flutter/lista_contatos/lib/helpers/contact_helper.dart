@@ -79,11 +79,14 @@ class ContactHelper {
     Database dbContact = await db;
 
     List listMap = await dbContact.rawQuery("SELECT * FROM $contactTable");
+    print(listMap);
+    print(listMap.runtimeType);
     List<Contact> listContact = List();
 
     for(Map m in listMap){
       listContact.add(Contact.fromMap(m));
     }
+    print(listContact.runtimeType);
     return listContact;
   }
 

@@ -2,20 +2,20 @@ import 'package:atividadecodetec/screens/member_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeTile extends StatelessWidget {
-  HomeTile(this.type, this.team, this._getData);
+  HomeTile(this.type, this.team);
 
   final String type;
   final Map<String, dynamic> team;
-  final Future<List> Function(String) _getData;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return Padding(
+    padding: EdgeInsets.only(bottom: type == "grid" ? 0.0 : 5.0),
+    child: InkWell(
+      splashColor: Colors.grey[500],
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => MemberScreen(team, _getData)));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => MemberScreen(team)));
       },
-      child: Padding(
-          padding: EdgeInsets.only(bottom: type == "grid" ? 0.0 : 8.0),
           child: Card(
           child: type == "grid"
               ? Stack(
@@ -26,13 +26,6 @@ class HomeTile extends StatelessWidget {
                     Align(
                       child: Text(team["nome"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),),
                       alignment: Alignment.center,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.0, right: 5.0),
-                      child: Align(
-                        child: Text("ID: ${team["id"]}", style: TextStyle(color: Colors.grey[500]),),
-                        alignment: Alignment.topRight,
-                      ),
                     ),
                     Align(
                       child: Icon(Icons.keyboard_arrow_down, color: Colors.grey[500],),
@@ -49,17 +42,9 @@ class HomeTile extends StatelessWidget {
                 height: 55.0,
                 child: Stack(
                   children: <Widget>[
-
                     Align(
                       child: Text(team["nome"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),),
                       alignment: Alignment.center,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: Align(
-                        child: Text("ID: ${team["id"]}", style: TextStyle(color: Colors.grey[500]),),
-                        alignment: Alignment.centerLeft,
-                      ),
                     ),
                     Align(
                       child: Icon(Icons.keyboard_arrow_right, color: Colors.grey[500],),

@@ -1,9 +1,9 @@
-import 'dart:convert';
+import 'package:atividadecodetec/helpers/database_helper.dart';
 import 'package:atividadecodetec/tiles/home_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-final String url = "http://28cf302f.ngrok.io/";
+final String url = "http://f16c16d0.ngrok.io/";
 
 class HomeTab extends StatefulWidget {
   @override
@@ -12,19 +12,12 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
 
-  Future<List> _getData(String jsonPath) async {
-    http.Response response;
-    response = await http.get(url + jsonPath);
-
-    print(json.decode(response.body).runtimeType);
-
-    return json.decode(response.body);
-  }
+  DatabaseHelper helper = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _getData("equipes"),
+        future: helper.getData("equipes"),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -43,14 +36,13 @@ class _HomeTabState extends State<HomeTab> {
                           childAspectRatio: 1.5),
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        print(snapshot.data[0]["nome"]);
-                        return Material( child: HomeTile("grid",snapshot.data[index], _getData), color: Colors.transparent);
+                        return Material( child: HomeTile("grid",snapshot.data[index]), color: Colors.transparent);
                       }),
                   ListView.builder(
                     padding: EdgeInsets.all(4.0),
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index){
-                      return Material( child: HomeTile("list",snapshot.data[index], _getData), color: Colors.transparent);
+                      return Material( child: HomeTile("list",snapshot.data[index]), color: Colors.transparent);
                     },
                   )
                 ]);
