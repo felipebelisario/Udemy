@@ -30,13 +30,16 @@ class _LoginScreenState extends State<LoginScreen> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
+    print(queryData.size.width);
+    print(queryData.size.height);
+
     return _buildBodyBack(Container(
         child: Center(
       child: Form(
           key: _formKey,
           child: Container(
-              width: queryData.size.width - 50.0,
-              height: queryData.size.height - 260.0,
+              width: queryData.size.width - ((50.0 * queryData.size.width) / 411.0),
+              height: queryData.size.height - ((260.0 * queryData.size.height) / 798.0),
               child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -53,9 +56,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontSize: 40.0,
                                   color: Theme.of(context).primaryColor,
                                   fontWeight: FontWeight.bold)))),
-                      SizedBox(
-                        height: 50.0,
-                      ),
                       Padding(
                         padding: EdgeInsets.only(left: 15.0, right: 15.0),
                       child: Column(
