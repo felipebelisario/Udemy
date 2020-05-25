@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Align(
                           alignment: Alignment.topCenter,
                           child: Padding(
-                              padding: EdgeInsets.only(top: 30.0),
+                              padding: EdgeInsets.only(top: 10.0 * MediaQuery.of(context).devicePixelRatio),
                               child: Text("Login",
                               style: TextStyle(
                                   fontSize: 40.0,
