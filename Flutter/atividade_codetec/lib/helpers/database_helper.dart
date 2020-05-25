@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-final String url = "http://d8f68942.ngrok.io/";
+final String url = "http://17b70f5a.ngrok.io/";
+SharedPreferences prefs;
+int loggedUser;
 
 class DatabaseHelper{
   static final DatabaseHelper _instance = DatabaseHelper.internal();
@@ -9,6 +12,13 @@ class DatabaseHelper{
   factory DatabaseHelper() => _instance;
 
   DatabaseHelper.internal();
+
+  Future<int> init() async {
+    prefs = await SharedPreferences.getInstance();
+
+    loggedUser = prefs.getInt("userId");
+  }
+
 
   Future<List> getData(String jsonPath) async {
 

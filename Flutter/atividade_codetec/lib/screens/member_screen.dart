@@ -42,6 +42,7 @@ class MemberScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Container(
                               width: 80.0,
@@ -62,23 +63,25 @@ class MemberScreen extends StatelessWidget {
                                 errorWidget: (context, url, error) {
                                   return Image.network(defaultImage);
                                 },
+                                placeholder: (context, url){
+                                  return CircularProgressIndicator();
+                                },
                               )),
                           Padding(
                               padding:
                                   EdgeInsets.fromLTRB(25.0, 10.0, 10.0, 10.0),
                               child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width - 165.0,
+                                color: Colors.red,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(snapshot.data[index]["nome"] ?? "",
                                           style: TextStyle(
                                               fontSize: 22.0,
                                               fontWeight: FontWeight.bold),
                                           overflow: TextOverflow.ellipsis,
-                                          maxLines: 1),
+                                          maxLines: 1
+                                      ),
                                       FutureBuilder(
                                         future: helper.getData(
                                             "cargos?id=${snapshot.data[index]["cargoId"]}"),
