@@ -38,8 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Form(
           key: _formKey,
           child: Container(
-              width: queryData.size.width - ((50.0 * queryData.size.width) / 411.0),
-              height: queryData.size.height - ((260.0 * queryData.size.height) / 798.0),
+              width: queryData.size.width -
+                  ((50.0 * queryData.size.width) / 411.0),
+              height: queryData.size.height -
+                  ((260.0 * queryData.size.height) / 798.0),
               child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -50,85 +52,91 @@ class _LoginScreenState extends State<LoginScreen> {
                       Align(
                           alignment: Alignment.topCenter,
                           child: Padding(
-                              padding: EdgeInsets.only(top: 10.0 * MediaQuery.of(context).devicePixelRatio),
+                              padding: EdgeInsets.only(top: 20.0),
                               child: Text("Login",
-                              style: TextStyle(
-                                  fontSize: 40.0,
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.bold)))),
-                      Padding(
-                        padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          TextFormField(
-                            controller: emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  borderSide:
-                                      BorderSide(color: Colors.blue[500]),
-                                ),
-                                hintText: "E-mail",
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0))),
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          SizedBox(height: 15.0,),
-                          TextFormField(
-                            controller: passwordController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                hintText: "Senha",
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  borderSide:
-                                      BorderSide(color: Colors.blue[500]),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0))),
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                ButtonTheme(
-                                    minWidth: 250.0,
-                                    height: 70.0,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                      ),
-                                      onPressed: () async {
-                                        if (_formKey.currentState.validate()) {
-                                          prefs = await SharedPreferences
-                                              .getInstance();
-                                          prefs.setInt("userId", 1);
-                                          Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext ctx) =>
-                                                      HomeScreen()));
-                                        }
-                                      },
+                                  style: TextStyle(
+                                      fontSize: 40.0,
                                       color: Theme.of(context).primaryColor,
-                                      child: Text(
-                                        "Entrar",
-                                        style: TextStyle(
-                                            fontSize: 25.0,
-                                            color: Colors.white),
-                                      ),
-                                    )),
-                              ]),
-                        ],
-                      )),
+                                      fontWeight: FontWeight.bold)))),
+                      Padding(
+                          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              TextFormField(
+                                controller: emailController,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      borderSide:
+                                          BorderSide(color: Colors.blue[500]),
+                                    ),
+                                    hintText: "E-mail",
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0))),
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                              SizedBox(
+                                height: 15.0,
+                              ),
+                              TextFormField(
+                                controller: passwordController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: "Senha",
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      borderSide:
+                                          BorderSide(color: Colors.blue[500]),
+                                    ),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0))),
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    ButtonTheme(
+                                        minWidth: 250.0,
+                                        height: 70.0,
+                                        child: RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(6.0),
+                                          ),
+                                          onPressed: () async {
+                                            if (_formKey.currentState
+                                                .validate()) {
+                                              prefs = await SharedPreferences
+                                                  .getInstance();
+                                              prefs.setInt("userId", 1);
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder:
+                                                          (BuildContext ctx) =>
+                                                              HomeScreen()));
+                                            }
+                                          },
+                                          color: Theme.of(context).primaryColor,
+                                          child: Text(
+                                            "Entrar",
+                                            style: TextStyle(
+                                                fontSize: 25.0,
+                                                color: Colors.white),
+                                          ),
+                                        )),
+                                  ]),
+                            ],
+                          )),
                       Align(
                         alignment: AlignmentDirectional.bottomEnd,
                         child: Row(
