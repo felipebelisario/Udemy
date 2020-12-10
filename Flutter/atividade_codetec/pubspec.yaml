@@ -33,6 +33,9 @@ dependencies:
   shared_preferences: ^0.5.7+3
   flutter_spinkit: "^4.1.2"
   dbcrypt: ^1.0.0
+  flutter_masked_text: ^0.7.0
+  google_fonts: ^1.1.0
+  bordered_text: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +48,10 @@ dev_dependencies:
 flutter:
   assets:
     - images/codetec_logo.jpg
+  fonts:
+    - family: Cocogoose
+      fonts:
+        - asset: fonts/cocogoose.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

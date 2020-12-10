@@ -2,9 +2,10 @@ import 'package:atividadecodetec/tiles/drawer_tile.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
-  CustomDrawer(this.pageController);
+  CustomDrawer(this.pageController, this.userInfo);
 
   final PageController pageController;
+  final List userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -56,19 +57,10 @@ class CustomDrawer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Olá,",
+                            "Olá, " + userInfo[0]["nome"],
                             style: TextStyle(
                                 fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
-                          GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                "Entre ou cadastre-se >",
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
-                              )),
                         ],
                       ),
                     ),

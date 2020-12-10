@@ -1,3 +1,4 @@
+import 'package:atividadecodetec/helpers/database_helper.dart';
 import 'package:atividadecodetec/tabs/home_tab.dart';
 import 'package:atividadecodetec/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _pageController = PageController();
+  DatabaseHelper database = DatabaseHelper();
+  SharedPreferences prefs;
+
+  Future<List> getUserInfo() async {
+    List _userInfo;
+    var _userId;
+
+    prefs = await SharedPreferences
+        .getInstance();
+    _userId = prefs.getInt("userId");
+
+    _userInfo = await database.getData("users?id=$_userId");
+
+    return _userInfo;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +44,29 @@ class _HomeScreenState extends State<HomeScreen> {
       controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        DefaultTabController(
-            length: 2,
-            child: Scaffold(
-              appBar: AppBar(
-                title: Text("Equipes"),
-                centerTitle: true,
-                bottom: TabBar(
-                  indicatorColor: Colors.white,
-                  tabs: <Widget>[
-                    Tab(icon: Icon(Icons.grid_on),),
-                    Tab(icon: Icon(Icons.list))
-                  ],
-                ),
-              ),
-              drawerEnableOpenDragGesture: true,
-              body: _buildBodyBack(HomeTab()),
-              drawer: CustomDrawer(_pageController),
-            )
+        FutureBuilder(
+          future: getUserInfo(),
+          builder: (context, snapshot){
+            return DefaultTabController(
+                length: 2,
+                child: Scaffold(
+                  appBar: AppBar(
+                    title: Text("Equipes"),
+                    centerTitle: true,
+                    bottom: TabBar(
+                      indicatorColor: Colors.white,
+                      tabs: <Widget>[
+                        Tab(icon: Icon(Icons.grid_on),),
+                        Tab(icon: Icon(Icons.list))
+                      ],
+                    ),
+                  ),
+                  drawerEnableOpenDragGesture: true,
+                  body: _buildBodyBack(HomeTab()),
+                  drawer: CustomDrawer(_pageController, snapshot.data),
+                )
+            );
+          },
         ),
         Container(color: Colors.green,),
         Container(color: Colors.yellow,),
